@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="background:#002F6C; color:white; text-align:center; padding:15px; font-family:Arial;">
+
+<h1 style="font-size:28px; margin-bottom:5px;">
+  🏆 PCH PRIZE<br>CHECKER 🏆
+</h1>
+<p style="font-size:14px; margin-top:0;">
+  <b>Publishers Clearing House</b><br>
+  Prizes up to $10,000,000!
+</p>
+
+<div style="background:white; color:#002F6C; padding:20px; border-radius:15px; max-width:400px; margin:auto;">
+
+<h2 style="font-size:16px;">TO CLAIM YOUR WINNINGS<br>ANSWER SOME QUESTIONS</h2>
+
+Full Name: <br><input id="n" style="width:90%; padding:8px; margin:5px;"><br>
+Age: <br><input id="a" type="number" style="width:90%; padding:8px; margin:5px;"><br>
+Address: <br><input id="ad" style="width:90%; padding:8px; margin:5px;"><br>
+Married/Single: <br>
+<select id="s" style="width:90%; padding:8px; margin:5px;">
+  <option value="">Select</option>
+  <option>Married</option><option>Single</option>
+</select><br>
+Email: <br><input id="e" type="email" style="width:90%; padding:8px; margin:5px;"><br><br>
+
+<button onclick="go()" style="background:#FFD700; color:#002F6C; padding:12px 40px; border:none; border-radius:8px; font-weight:bold; font-size:16px;">
+  SUBMIT & CLAIM
+</button>
+
+<div id="msg" style="margin-top:20px;"></div>
+</div>
+
+<!-- THIS IS THE LIST OF PEOPLE WHO SUBMITTED -->
+<div style="background:#001F4C; padding:10px; margin-top:20px; border-radius:10px;">
+  <h3>People Who Submitted: <span id="total">0</span></h3>
+  <div id="list" style="font-size:12px; text-align:left;"></div>
+</div>
+
+<script>
+let people = []; // This will store everyone
+
+function go(){
+  let name = document.getElementById("n").value;
+  let age = document.getElementById("a").value;
+  let address = document.getElementById("ad").value;
+  let status = document.getElementById("s").value;
+  let email = document.getElementById("e").value;
+  
+  if(name=="" || age=="" || address=="" || status=="" || email==""){
+    alert("Please fill all fields");
+    return;
+  }
+  
+  let code = "PCH-" + Math.random().toString(36).substr(2,4).toUpperCase() + "-2026";
+  
+  // Add person to list
+  people.push({name:name, code:code});
+  
+  // Update total and list
+  document.getElementById("total").innerText = people.length;
+  document.getElementById("list").innerHTML += "<b>"+people.length+".</b> "+name+" - "+code+"<br>";
+  
+  // Show result to client
+  if(people.length <= 20){
+    document.getElementById("msg").innerHTML = 
+    "<h2 style='color:green'>✅ CONGRATULATIONS!</h2><p>You are WINNER #"+people.length+"</p><h1 style='color:green'>"+code+"</h1>";
+  } else {
+    document.getElementById("msg").innerHTML = 
+    "<h2 style='color:red'>❌ SORRY</h2><p>TRY AGAIN NEXT TIME</p><p>You are #"+people.length+"</p>";
+  }
+  
+  // Clear form
+  document.getElementById("n").value="";
+  document.getElementById("a").value="";
+  document.getElementById("ad").value="";
+  document.getElementById("s").value="";
+  document.getElementById("e").value="";
+}
+</script>
+
+</body>
+</html>
