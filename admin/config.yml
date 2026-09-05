@@ -1,0 +1,18 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+    - name: "properties"
+    label: "Properties"
+    folder: "properties"
+    create: true
+    fields:
+            - {label: "Title", name: "title", widget: "string"}
+            - {label: "Price", name: "price", widget: "string"}
+            - {label: "Location", name: "location", widget: "string"}
+            - {label: "Photos", name: "images", widget: "image", multiple: true}
+            - {label: "Description", name: "body", widget: "markdown"}
